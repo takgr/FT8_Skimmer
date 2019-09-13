@@ -1,0 +1,5 @@
+TIMESTAMP=`date --utc +'%y%m%d_%H%M'`
+FREQ="14074000"
+FILENAME="ft8_"$FREQ"_"$TIMESTAMP".c2"
+echo $FILENAME 
+nc -W 16000 -v 127.0.0.1 14074 | csdr convert_i16_f |csdr fir_decimate_cc 250 0.001 HAMMING  >  $FILENAME
