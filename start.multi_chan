@@ -1,0 +1,7 @@
+kill $(ps aux | grep '[p]ython fourchanrx-new.py' | awk '{print $2}')
+python fourchanrx-new.py &
+sleep 3
+cat fifo_chan1.c2 |nmux --bufsize 253952 --bufcnt 197 --port 14074 --address 127.0.0.1 &
+cat fifo_chan2.c2 |nmux --bufsize 253952 --bufcnt 197 --port 7074 --address 127.0.0.1 &
+cat fifo_chan3.c2 |nmux --bufsize 253952 --bufcnt 197 --port 3573 --address 127.0.0.1 &
+cat fifo_chan4.c2 |nmux --bufsize 253952 --bufcnt 197 --port 1840 --address 127.0.0.1 &
